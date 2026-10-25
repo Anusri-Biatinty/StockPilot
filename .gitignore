@@ -1,0 +1,36 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Java / Maven
+backend/target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+hs_err_pid*
+
+# Node / Vite
+node_modules/
+frontend/dist/
+frontend/coverage/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Local databases
+*.db
+*.sqlite
+pgdata/
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+.classpath
+.project
+.settings/

@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: stockpilot-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-stockpilot}
+      POSTGRES_USER: ${DB_USERNAME:-stockpilot}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-stockpilot_dev}
+    ports:
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - stockpilot-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-stockpilot} -d ${DB_NAME:-stockpilot}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Optional local SMTP catcher: web UI on http://localhost:8025
+  mailpit:
+    image: axllent/mailpit:v1.21
+    container_name: stockpilot-mailpit
+    profiles: ["mail"]
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  stockpilot-pgdata:

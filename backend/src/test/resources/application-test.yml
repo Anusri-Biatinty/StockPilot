@@ -1,0 +1,13 @@
+app:
+  jwt:
+    secret: dGVzdC1vbmx5LXNlY3JldC1rZXktZm9yLWF1dG9tYXRlZC10ZXN0cy0xMjM0NTY3ODkw
+  security:
+    cookie-secure: false
+    auth-requests-per-minute: 1000
+  jobs:
+    token-cleanup-cron: "-"
+
+logging:
+  level:
+    com.stockpilot: INFO
+    org.testcontainers: WARN
